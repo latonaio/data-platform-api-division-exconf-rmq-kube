@@ -1,0 +1,12 @@
+no-tests = true
+output = "models"
+wipe = true
+
+[mysql]
+dbname = "DataPlatformMastersAndTransactionsMysqlKube"
+host = "xxxxxxxxxxxxxxxx"
+port = 30010
+user = "xxxxxxxxxxxxxxxx"
+pass = "xxxxxxxxxxxxxxxx"
+sslmode = "false"
+whitelist = ["data_platform_division_division_data"]

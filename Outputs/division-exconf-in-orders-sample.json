@@ -1,0 +1,12 @@
+{
+    "cursor": "/go/src/github.com/latonaio/data-platform-api-division-exconf/main.go#L56",
+    "function": "('DPFM_API_ORDERS_SRV', 'creates', 'A_Item', 'Division', 'DPFM_API_DIVISION_SRV', 'exconf');",
+    "level": "INFO",
+    "service_label": "ORDERS",
+    "Product": {
+        "Division": "01",
+        "ExistenceConf": true
+    },
+    "runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+    "time": "2022-09-29T07:04:23Z"
+}

@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: data-platform-api-division-exconf-rmq-kube
+  name: data-platform-api-division-exconf-rmq-kube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: data-platform-api-division-exconf-rmq-kube
+      app: DIVISION
+  template:
+    metadata:
+      labels:
+        run: data-platform-api-division-exconf-rmq-kube
+        app: DIVISION
+    spec:
+      nodeName: worker
+      hostname: data-platform-api-division-exconf-rmq-kube
+      containers:
+        - name: data-platform-api-division-exconf-rmq-kube
+          image: latonaio/data-platform-api-division-exconf-rmq-kube
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/aion/Data
+            - name: ui
+              mountPath: /var/lib/aion/UI/data-platform-api-division-exconf-rmq-kube/public/
+          env:
+
+            - name : "RMQ_USER"
+              value: "XXXXXXXXXX"
+            - name : "RMQ_PASS"
+              value: "XXXXXXXXXX"
+            - name : "RMQ_ADDRESS"
+              value: "rabbitmq"
+            - name : "RMQ_PORT"
+              value: "5672"
+            - name : "RMQ_QUEUE_FROM"
+              value: "data-platform-api-division-existence-queue-from"
+            - name : "RMQ_QUEUE_TO"
+              value: "data-platform-api-division-existence-queue-to"
+            - name : "RMQ_VHOST"
+              value: "XXXXXXXXXXXX"
+            - name : "DB_USER"
+              value: "XXXXXXXXXX"
+            - name : "DB_PASS"
+              value: "XXXXXXXXXX"
+            - name : "DB_NAME"
+              value: "DataPlatformMastersAndTransactionsMysqlKube"
+            - name : "DB_ADDRESS"
+              value: "data-platform-masters-and-transactions-mysql-kube"
+            - name : "DB_PORT"
+              value: "3306"
+          resources:
+            limits:
+              cpu: "1"
+              memory: "200Mi"
+            requests:
+              cpu: "0.5"
+              memory: "100Mi"
+      volumes:
+        - name: data
+          hostPath:
+            path: /var/lib/aion/default/Data
+        - name: ui
+          hostPath:
+            path: /var/lib/aion/UI/data-platform-api-division-exconf-rmq-kube/public/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: data-platform-api-division-exconf-rmq-kube
+  name: data-platform-api-division-exconf-rmq-kube
+spec:
+  selector:
+    run: data-platform-api-division-exconf-rmq-kube
+  type: NodePort
+  ports:
+    - name: api
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30575

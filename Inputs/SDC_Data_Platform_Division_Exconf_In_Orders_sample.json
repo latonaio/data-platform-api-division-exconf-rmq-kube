@@ -1,0 +1,15 @@
+{
+	"connection_key": "request",
+	"result": true,
+	"redis_key": "abcdefg",
+	"runtime_session_id":"boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+	"service_label": "ORDERS",
+	"Orders": {
+		"Division": "01"
+	},
+	"api_schema": "DPFMOrdersCreates",
+	"accepter": ["All"],
+	"order_id": null,
+	"deleted": false
+}
